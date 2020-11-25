@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace HostWebUI
 {
@@ -12,6 +16,15 @@ namespace HostWebUI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            List<Assembly> assemblies = PluginLoader.GetPluginAssamblies();
+            foreach (var assambly in assemblies)
+            {
+                services.AddControllersWithViews().AddApplicationPart(assambly).AddRazorRuntimeCompilation();
+                services.Configure<MvcRazorRuntimeCompilationOptions>((options) =>
+                {
+                    options.FileProviders.Add(new EmbeddedFileProvider(assambly));
+                });
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
