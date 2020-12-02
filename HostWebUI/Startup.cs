@@ -12,11 +12,11 @@ namespace HostWebUI
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        private static List<PluginLoadedPackage> plugins;
+
         public void ConfigureServices(IServiceCollection services)
         {
-            List<PluginContext> plugins = PluginLoader.LoadPlugins();
+            plugins = PluginLoader.LoadPlugins();
             foreach (var plugin in plugins)
             {
                 foreach(var part in plugin.Parts)
@@ -26,12 +26,22 @@ namespace HostWebUI
             }
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+
+            app.UseStaticFiles();
+            foreach (var plugin in plugins)
+            {
+                var staticFileOptions = new StaticFileOptions
+                {
+                    FileProvider = plugin.FileProvider,
+                    RequestPath = new PathString("/" + plugin.Name + "/wwwroot")
+                };
+                app.UseStaticFiles(staticFileOptions);
             }
 
             app.UseRouting();

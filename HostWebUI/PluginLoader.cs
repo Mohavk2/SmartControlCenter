@@ -1,5 +1,6 @@
 ﻿using Infrastructure;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Microsoft.Extensions.FileProviders;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,69 +11,81 @@ using System.Threading.Tasks;
 
 namespace HostWebUI
 {
-    public class PluginContext
+    public struct PluginLoadedPackage
     {
-        public AssemblyName Name { get; private set; }
-        public List<ApplicationPart> Parts { get; } = new List<ApplicationPart>();
-
-        public PluginContext(Assembly pluginAssembly)
-        {
-            this.Name = pluginAssembly.GetName();
-            this.Parts = pluginAssembly.GetAllParts();
-        }
+        public string Name { get; init; }
+        public IPlugin Plugin { get; init; }
+        public List<ApplicationPart> Parts { get; init; }
+        public EmbeddedFileProvider FileProvider { get; init; }
+        public string StaticFilesPath { get; init; }
     }
 
     public static class PluginLoader
     {
         public const string pluginDirectoryPath = @"C:\Users\Saint\source\repos\SmartControlCenter\HostWebUI\bin\Debug\net5.0\Plugins\net5.0";
-        private static Type pluginType = typeof(IPlugin);
 
-        public static List<PluginContext> LoadPlugins()
+        public static List<PluginLoadedPackage> LoadPlugins()
         {
             string[] pluginsPaths = Directory.GetFiles(pluginDirectoryPath, "*.dll");
 
-            List<PluginContext> plugins = new List<PluginContext>();
+            List<PluginLoadedPackage> plugins = new List<PluginLoadedPackage>();
 
-            List<Assembly> assemblies = GetPluginAssemblies(pluginsPaths);
+            var assemblies = GetPluginAssemblies(pluginsPaths);
 
             foreach (var assembly in assemblies)
             {
-                plugins.Add(new PluginContext(assembly));
+                try
+                {
+                    var plugin = TryGetPlugin(assembly);
+                    var name = assembly.GetName().Name;
+                    var parts = GetAllParts(assembly);
+                    var staticFilesPath = name + ".wwwroot";
+                    var fileProvider = new EmbeddedFileProvider(assembly, staticFilesPath);
+
+                    var pluginPackage = new PluginLoadedPackage
+                    {
+                        Plugin = plugin,
+                        Name = name,
+                        Parts = parts,
+                        StaticFilesPath = staticFilesPath,
+                        FileProvider = fileProvider
+                    };
+
+                    plugins.Add(pluginPackage);
+                }
+                catch (Exception ex)
+                {
+                    //TODO:Add logging
+                }
             }
             return plugins;
         }
 
-        public static List<Assembly> GetPluginAssemblies(string[] paths)
+        private static IPlugin TryGetPlugin(Assembly assembly)
+        {
+            Type[] types = assembly.GetTypes();
+            foreach (var type in types)
+            {
+                if (type.IsAssignableTo(typeof(IPlugin)))
+                {
+                    return (IPlugin)Activator.CreateInstance(type);
+                }
+            }
+            throw new Exception($"Unable to load plugin from assembly {assembly.FullName}");
+        }
+
+        private static List<Assembly> GetPluginAssemblies(string[] paths)
         {
             List<Assembly> assemblies = new List<Assembly>();
 
             foreach (var path in paths)
             {
-                var assambly = Assembly.LoadFrom(path);
-                if (assambly.ContainsPlugin(typeof(IPlugin)))
-                {
-                    assemblies.Add(assambly);
-                }
+                assemblies.Add(Assembly.LoadFrom(path));
             }
             return assemblies;
         }
 
-        //Extensions
-
-        static bool ContainsPlugin(this Assembly assembly, Type pluginType)
-        {
-            Type[] types = assembly.GetTypes();
-            foreach (var type in types)
-            {
-                if (type.IsAssignableTo(pluginType))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public static List<ApplicationPart> GetAllParts(this Assembly pluginAssembly)
+        private static List<ApplicationPart> GetAllParts(Assembly pluginAssembly)
         {
             List<ApplicationPart> allParts = new List<ApplicationPart>();
 
@@ -97,5 +110,6 @@ namespace HostWebUI
             }
             return allParts;
         }
+
     }
 }
