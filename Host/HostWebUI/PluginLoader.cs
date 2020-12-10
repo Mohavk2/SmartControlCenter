@@ -22,7 +22,7 @@ namespace HostWebUI
 
     public static class PluginLoader
     {
-        public const string pluginDirectoryPath = @"C:\Users\Saint\source\repos\SmartControlCenter\HostWebUI\bin\Debug\net5.0\Plugins\net5.0";
+        public const string pluginDirectoryPath = @"C:\Users\Saint\source\repos\SmartControlCenter\Host\HostWebUI\bin\Debug\net5.0\Plugins\net5.0";
 
         public static List<PluginLoadedPackage> LoadPlugins()
         {

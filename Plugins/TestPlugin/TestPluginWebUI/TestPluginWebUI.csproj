@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>C:\Users\Saint\source\repos\SmartControlCenter\HostWebUI\bin\Debug\net5.0\Plugins\</OutputPath>
+    <OutputPath>C:\Users\Saint\source\repos\SmartControlCenter\Host\HostWebUI\bin\Debug\net5.0\Plugins\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,9 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\Infrastructure.csproj">
       <Private>false</Private>
       <ExcludeAssets>runtime</ExcludeAssets>
     </ProjectReference>
   </ItemGroup>
+
 </Project>
