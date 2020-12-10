@@ -1,12 +1,31 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = "_PluginView";
+}
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title></title>
+@section Styles {
     <link type="text/css" rel="stylesheet" href="~/TestPluginWebUI/wwwroot/css/style.css" />
-</head>
-<body>
-    Hello from Test plugin
-</body>
-</html>
+}
+
+<div id="TestContainer">
+    <h3>Hello from Test Plugin</h3>
+    <input type="button" id="TestButton" value="Test Ajax"/>
+    <div id="TestOutput"></div>
+    <script type="text/javascript">
+
+        var btn = document.getElementById("TestButton");
+        var out = document.getElementById("TestOutput");
+
+        btn.onclick = async function test() {
+
+            const response = await fetch("/Test/TestAjax", {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+
+            if (response.ok === true) {
+                out.innerHTML = await response.json();
+            }
+        }
+        
+    </script>
+</div>

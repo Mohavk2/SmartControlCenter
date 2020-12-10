@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@section Styles {
+    <link type="text/css" rel="stylesheet" href="~/css/PluginViewStyle.css" />
+    @RenderSection("Styles", false)
+}
+
+<div id="HostPluginContainer">
+    @RenderBody()
+</div>

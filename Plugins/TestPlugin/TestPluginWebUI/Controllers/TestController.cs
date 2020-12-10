@@ -13,5 +13,10 @@ namespace TestPlugin.Controllers
         {
             return View();
         }
+
+        public string TestAjax()
+        {
+            return "{ Name: Testing Ajax, Status: OK }";
+        }
     }
 }

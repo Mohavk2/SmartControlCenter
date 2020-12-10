@@ -1,0 +1,20 @@
+﻿#HostLayoutHeader {
+    position: relative;
+    height: 60px;
+    width: auto;
+    line-height: 50px;
+    display: flex;
+    justify-content: center;
+    background-color: azure;
+    font-size: 40px;
+}
+#HostNavigationBar{
+
+}
+#MainHostContainer {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,25 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link type="text/css" rel="stylesheet" href="~/css/ResetDefaultCss.css" />
+    <link type="text/css" rel="stylesheet" href="~/css/LayoutStyle.css" />
+    @RenderSection("Styles", false)
+
+</head>
+<body>
+    <header id="HostLayoutHeader">
+        <h1>Smart control center</h1>
+    </header>
+    <nav id="HostNavigationBar">
+        <a asp-action="Index" asp-controller="Test">TestPlugin</a>
+    </nav>
+    <div id="MainHostContainer">
+        @RenderBody()
+    </div>
+</body>
+</html>
