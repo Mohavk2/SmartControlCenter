@@ -1,5 +1,6 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
+@using HostWebUI.Interfaces
+@inject IPluginManager pluginManager
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -16,7 +17,10 @@
         <h1>Smart control center</h1>
     </header>
     <nav id="HostNavigationBar">
-        <a asp-action="Index" asp-controller="Test">TestPlugin</a>
+        @foreach (var pluginName in pluginManager.GetPluginNames())
+        {
+        <a asp-action="Index" asp-controller="@pluginName">@pluginName</a>
+        }
     </nav>
     <div id="MainHostContainer">
         @RenderBody()

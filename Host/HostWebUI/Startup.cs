@@ -1,3 +1,6 @@
+using HostWebUI.Interfaces;
+using HostWebUI.Services;
+using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,21 +15,24 @@ namespace HostWebUI
 {
     public class Startup
     {
-        private static List<PluginLoadedPackage> plugins;
+        private static List<PluginLoadedPackage> pluginsPackages;
 
         public void ConfigureServices(IServiceCollection services)
         {
-            plugins = PluginLoader.LoadPlugins();
-            foreach (var plugin in plugins)
+            services.AddSingleton<IPluginManager, PluginManager>();
+
+            pluginsPackages = PluginLoader.LoadPlugins();
+
+            foreach (var pluginPackage in pluginsPackages)
             {
-                foreach(var part in plugin.Parts)
+                foreach (var part in pluginPackage.Parts)
                 {
                     services.AddControllersWithViews().PartManager.ApplicationParts.Add(part);
                 }
             }
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IPluginManager pluginManager)
         {
             if (env.IsDevelopment())
             {
@@ -34,15 +40,19 @@ namespace HostWebUI
             }
 
             app.UseStaticFiles();
-            foreach (var plugin in plugins)
+
+            foreach (var pluginPackage in pluginsPackages)
             {
-                var staticFileOptions = new StaticFileOptions
+                app.UseStaticFiles(new StaticFileOptions
                 {
-                    FileProvider = plugin.FileProvider,
-                    RequestPath = new PathString("/" + plugin.Name + "/wwwroot")
-                };
-                app.UseStaticFiles(staticFileOptions);
+                    FileProvider = pluginPackage.FileProvider,
+                    RequestPath = new PathString("/" + pluginPackage.AssembleName + "/wwwroot")
+                });
+
+                pluginManager.AddPlugin(pluginPackage.Plugin);
             }
+
+
 
             app.UseRouting();
 

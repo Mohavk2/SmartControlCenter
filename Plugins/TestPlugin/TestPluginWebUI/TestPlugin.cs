@@ -5,6 +5,6 @@ namespace TestPlugin
 {
     public class TestPlugin : IPlugin
     {
-        public string Name { get; set; }
+        public string Name { get; } = "Test";
     }
 }

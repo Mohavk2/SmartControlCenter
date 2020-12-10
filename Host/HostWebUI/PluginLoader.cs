@@ -13,7 +13,7 @@ namespace HostWebUI
 {
     public struct PluginLoadedPackage
     {
-        public string Name { get; init; }
+        public string AssembleName { get; init; }
         public IPlugin Plugin { get; init; }
         public List<ApplicationPart> Parts { get; init; }
         public EmbeddedFileProvider FileProvider { get; init; }
@@ -45,7 +45,7 @@ namespace HostWebUI
                     var pluginPackage = new PluginLoadedPackage
                     {
                         Plugin = plugin,
-                        Name = name,
+                        AssembleName = name,
                         Parts = parts,
                         StaticFilesPath = staticFilesPath,
                         FileProvider = fileProvider

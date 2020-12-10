@@ -14,6 +14,7 @@ namespace TestPlugin.Controllers
             return View();
         }
 
+        [Route("[controller]/api/[action]")]
         public string TestAjax()
         {
             return "{ Name: Testing Ajax, Status: OK }";

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace YiiBulbColor.Controllers
 {
-    public class YiiLightController : Controller
+    public class YiiColorBulbController : Controller
     {
         public IActionResult Index()
         {
