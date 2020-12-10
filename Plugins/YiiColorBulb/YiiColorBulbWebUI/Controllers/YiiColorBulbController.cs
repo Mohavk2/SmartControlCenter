@@ -9,5 +9,11 @@ namespace YiiBulbColor.Controllers
         {
             return View();
         }
+
+        [Route("[controller]/api/[action]")]
+        public string TestAjax()
+        {
+            return "{ Name: YiiColorBulb, Status: OK }";
+        }
     }
 }

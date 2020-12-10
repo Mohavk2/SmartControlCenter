@@ -1,12 +1,33 @@
-﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title></title>
+﻿@{
+    Layout = "_PluginView";
+}
+@section Styles{
     <link type="text/css" rel="stylesheet" href="~/YiiColorBulbWebUI/wwwroot/css/style.css" />
-</head>
-<body>
-    Hello from YiiLight plugin
-</body>
-</html>
+}
+
+<div id="MainContainer">
+    
+    <h3>Hello from YiiColorBulb Plugin</h3>
+
+    <input type="button" id="TestButton" value="Test Ajax" />
+    <div id="TestOutput"></div>
+
+    <script type="text/javascript">
+
+        var btn = document.getElementById("TestButton");
+        var out = document.getElementById("TestOutput");
+
+        btn.onclick = async function test() {
+
+            const response = await fetch("/YiiColorBulb/api/TestAjax", {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+
+            if (response.ok === true) {
+                out.innerHTML = await response.json();
+            }
+        }
+
+    </script>
+</div>

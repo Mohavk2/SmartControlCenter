@@ -16,12 +16,16 @@
     <header id="HostLayoutHeader">
         <h1>Smart control center</h1>
     </header>
-    <nav id="HostNavigationBar">
-        @foreach (var pluginName in pluginManager.GetPluginNames())
-        {
-        <a asp-action="Index" asp-controller="@pluginName">@pluginName</a>
-        }
-    </nav>
+        <nav id="HostNavigationBar">
+            @foreach (var pluginName in pluginManager.GetPluginNames())
+            {
+            <div class="HostPluginNavButton">
+
+               <a asp-action="Index" asp-controller="@pluginName">@pluginName</a>
+
+            </div>
+            }
+        </nav>
     <div id="MainHostContainer">
         @RenderBody()
     </div>
