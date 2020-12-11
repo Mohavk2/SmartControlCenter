@@ -2,13 +2,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HostWebUI", "Host\HostWebUI\HostWebUI.csproj", "{B2E904BD-70C2-40C0-8FBA-5A1E3122B5BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HostWeb", "Host\HostWeb\HostWeb.csproj", "{B2E904BD-70C2-40C0-8FBA-5A1E3122B5BE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{352C9B8E-D84E-407E-BEC4-DF14A4B67FCF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YiiColorBulbWebUI", "Plugins\YiiColorBulb\YiiColorBulbWebUI\YiiColorBulbWebUI.csproj", "{25865EE5-3E16-4336-AAE7-99CAD804A9F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YiiColorBulbWeb", "Plugins\YiiColorBulb\YiiColorBulbWeb\YiiColorBulbWeb.csproj", "{25865EE5-3E16-4336-AAE7-99CAD804A9F3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestPluginWebUI", "Plugins\TestPlugin\TestPluginWebUI\TestPluginWebUI.csproj", "{624BF4EC-5035-4322-9A99-874A716500C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestPluginWeb", "Plugins\TestPlugin\TestPluginWeb\TestPluginWeb.csproj", "{624BF4EC-5035-4322-9A99-874A716500C9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{D5F05EB9-B86C-49B1-B512-DBEF24D7B84F}"
 EndProject
