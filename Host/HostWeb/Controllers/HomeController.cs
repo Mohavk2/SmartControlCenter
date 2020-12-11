@@ -1,11 +1,11 @@
-﻿using HostWebUI.Interfaces;
+﻿using HostWeb.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HostWebUI.Controllers
+namespace HostWeb.Controllers
 {
     public class HomeController : Controller
     {

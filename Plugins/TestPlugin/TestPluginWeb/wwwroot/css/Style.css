@@ -7,3 +7,14 @@
     justify-content: center;
     align-items: center;
 }
+
+.TestBlock {
+    height: 100px;
+    width: 200px;
+    border: dotted;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

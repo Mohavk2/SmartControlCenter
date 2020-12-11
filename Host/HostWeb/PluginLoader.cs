@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Runtime.Loader;
 using System.Threading.Tasks;
 
-namespace HostWebUI
+namespace HostWeb
 {
     public struct PluginLoadedPackage
     {

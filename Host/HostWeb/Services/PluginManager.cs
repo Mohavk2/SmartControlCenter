@@ -1,11 +1,11 @@
-﻿using HostWebUI.Interfaces;
+﻿using HostWeb.Interfaces;
 using Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HostWebUI.Services
+namespace HostWeb.Services
 {
     public class PluginManager : IPluginManager
     {
@@ -16,10 +16,14 @@ namespace HostWebUI.Services
             plugins.Add(plugin.Name, plugin);
         }
 
-
         public IEnumerable<string> GetPluginNames()
         {
             return plugins.Keys;
+        }
+
+        public IEnumerable<IPlugin> GetPlugins()
+        {
+            return plugins.Values;
         }
     }
 }

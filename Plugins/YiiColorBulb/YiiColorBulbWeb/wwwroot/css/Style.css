@@ -1,4 +1,4 @@
-﻿#MainContainer{
+﻿#MainContainer {
     position: relative;
     width: 100%;
     height: 100%;
@@ -8,6 +8,13 @@
     align-items: center;
 }
 
-#ControlPanel {
-
+.TestBlock {
+    height: 100px;
+    width: 200px;
+    border: dotted;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

@@ -1,7 +1,12 @@
-﻿namespace Infrastructure
+﻿using Microsoft.AspNetCore.Routing;
+using System;
+
+namespace Infrastructure
 {
     public interface IPlugin
     {
-        string Name { get; }
+        public string Name { get; }
+
+        public void UseEndpoints(IEndpointRouteBuilder endpoints);
     }
 }

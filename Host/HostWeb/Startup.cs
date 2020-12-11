@@ -1,5 +1,5 @@
-using HostWebUI.Interfaces;
-using HostWebUI.Services;
+using HostWeb.Interfaces;
+using HostWeb.Services;
 using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,7 +11,7 @@ using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace HostWebUI
+namespace HostWeb
 {
     public class Startup
     {
@@ -31,6 +31,7 @@ namespace HostWebUI
                     services.AddControllersWithViews().PartManager.ApplicationParts.Add(part);
                 }
             }
+            services.AddSignalR();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IPluginManager pluginManager)
@@ -58,9 +59,12 @@ namespace HostWebUI
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
-            {
+            {   //To give the ability to a user to customize endpoints for controllers and hubs
+                foreach(var plugin in pluginManager.GetPlugins())
+                {
+                    plugin.UseEndpoints(endpoints);
+                }
                 endpoints.MapDefaultControllerRoute();
-
             });
         }
     }

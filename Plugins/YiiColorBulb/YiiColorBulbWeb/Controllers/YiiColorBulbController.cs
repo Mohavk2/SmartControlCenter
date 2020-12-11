@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 
-namespace YiiBulbColor.Controllers
+namespace YiiColorBulbWeb.Controllers
 {
     public class YiiColorBulbController : Controller
     {
