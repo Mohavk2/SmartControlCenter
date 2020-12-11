@@ -14,14 +14,13 @@ namespace HostWebUI
     public struct PluginLoadedPackage
     {
         public string AssembleName { get; init; }
+        public Assembly Assembly { get; init; }
         public IPlugin Plugin { get; init; }
         public List<ApplicationPart> Parts { get; init; }
-        public EmbeddedFileProvider FileProvider { get; init; }
-        public string StaticFilesPath { get; init; }
     }
 
     public static class PluginLoader
-    {
+    {   //TODO: Add configuration
         public const string pluginDirectoryPath = @"C:\Users\Saint\source\repos\SmartControlCenter\Host\HostWebUI\bin\Debug\net5.0\Plugins\net5.0";
 
         public static List<PluginLoadedPackage> LoadPlugins()
@@ -39,23 +38,20 @@ namespace HostWebUI
                     var plugin = TryGetPlugin(assembly);
                     var name = assembly.GetName().Name;
                     var parts = GetAllParts(assembly);
-                    var staticFilesPath = name + ".wwwroot";
-                    var fileProvider = new EmbeddedFileProvider(assembly, staticFilesPath);
 
                     var pluginPackage = new PluginLoadedPackage
                     {
                         Plugin = plugin,
                         AssembleName = name,
+                        Assembly = assembly,
                         Parts = parts,
-                        StaticFilesPath = staticFilesPath,
-                        FileProvider = fileProvider
                     };
 
                     plugins.Add(pluginPackage);
                 }
                 catch (Exception ex)
                 {
-                    //TODO:Add logging
+                    //TODO: Add logging
                 }
             }
             return plugins;
@@ -65,7 +61,7 @@ namespace HostWebUI
         {
             Type[] types = assembly.GetTypes();
             foreach (var type in types)
-            {
+            {   //Load only plugins
                 if (type.IsAssignableTo(typeof(IPlugin)))
                 {
                     return (IPlugin)Activator.CreateInstance(type);

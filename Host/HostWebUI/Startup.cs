@@ -23,9 +23,10 @@ namespace HostWebUI
 
             pluginsPackages = PluginLoader.LoadPlugins();
 
-            foreach (var pluginPackage in pluginsPackages)
+            //To serve plugins routing and views
+            foreach (var package in pluginsPackages)
             {
-                foreach (var part in pluginPackage.Parts)
+                foreach (var part in package.Parts)
                 {
                     services.AddControllersWithViews().PartManager.ApplicationParts.Add(part);
                 }
@@ -41,24 +42,25 @@ namespace HostWebUI
 
             app.UseStaticFiles();
 
-            foreach (var pluginPackage in pluginsPackages)
+            //To serve plugins css, js and other static resources
+            foreach (var package in pluginsPackages)
             {
                 app.UseStaticFiles(new StaticFileOptions
                 {
-                    FileProvider = pluginPackage.FileProvider,
-                    RequestPath = new PathString("/" + pluginPackage.AssembleName + "/wwwroot")
+                    FileProvider = new EmbeddedFileProvider(package.Assembly, package.AssembleName + ".wwwroot"),
+                    //To avoid plugin resource names collisions
+                    RequestPath = new PathString("/" + package.AssembleName + "/wwwroot")
                 });
-
-                pluginManager.AddPlugin(pluginPackage.Plugin);
+                //Collecting plugins interfaces
+                pluginManager.AddPlugin(package.Plugin);
             }
-
-
 
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
+
             });
         }
     }
