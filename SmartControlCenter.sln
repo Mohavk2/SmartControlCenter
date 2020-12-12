@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestPlugin", "TestPlugin", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YiiColorBulb", "YiiColorBulb", "{8B62FDA3-60B6-4106-A61C-2C0D299045B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPluginWpf", "Plugins\TestPlugin\TestPluginWpf\TestPluginWpf.csproj", "{ADF7905C-E7E8-450D-AEFC-B8738D8B5293}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{624BF4EC-5035-4322-9A99-874A716500C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{624BF4EC-5035-4322-9A99-874A716500C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{624BF4EC-5035-4322-9A99-874A716500C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADF7905C-E7E8-450D-AEFC-B8738D8B5293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADF7905C-E7E8-450D-AEFC-B8738D8B5293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADF7905C-E7E8-450D-AEFC-B8738D8B5293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADF7905C-E7E8-450D-AEFC-B8738D8B5293}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{624BF4EC-5035-4322-9A99-874A716500C9} = {0758DA89-220F-4DA0-8A09-D7AA4A26BE71}
 		{0758DA89-220F-4DA0-8A09-D7AA4A26BE71} = {D5F05EB9-B86C-49B1-B512-DBEF24D7B84F}
 		{8B62FDA3-60B6-4106-A61C-2C0D299045B6} = {D5F05EB9-B86C-49B1-B512-DBEF24D7B84F}
+		{ADF7905C-E7E8-450D-AEFC-B8738D8B5293} = {0758DA89-220F-4DA0-8A09-D7AA4A26BE71}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {623301EF-AAC4-4FC1-A723-5C8A8EF7856E}

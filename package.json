@@ -1,0 +1,24 @@
+{
+  "name": "SmartControlCenter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@microsoft/signalr": "^5.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mohavk2/SmartControlCenter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mohavk2/SmartControlCenter/issues"
+  },
+  "homepage": "https://github.com/Mohavk2/SmartControlCenter#readme",
+  "description": ""
+}

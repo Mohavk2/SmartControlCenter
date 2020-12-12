@@ -11,7 +11,7 @@ namespace TestPluginWeb.Hubs
     {
         public Task SendTest(string message)
         {
-            return Clients.Others.SendAsync("send", message);
+            return Clients.All.SendAsync("Send", message);
         }
     }
 }
