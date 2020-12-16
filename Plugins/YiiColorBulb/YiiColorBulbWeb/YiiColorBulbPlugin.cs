@@ -1,11 +1,11 @@
-﻿using Infrastructure;
-using Microsoft.AspNetCore.Routing;
+﻿using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Builder;
 using YiiColorBulbWeb.Hubs;
+using WebInfrastructure;
 
 namespace YiiColorBulbWeb
 {
-    public class YiiColorBulbPlugin : IPlugin
+    public class YiiColorBulbPlugin : IWebPlugin
     {
         public string Name { get; } = "YiiColorBulb";
 

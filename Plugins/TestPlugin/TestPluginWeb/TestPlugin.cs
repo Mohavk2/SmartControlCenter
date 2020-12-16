@@ -1,11 +1,11 @@
-﻿using Infrastructure;
-using Microsoft.AspNetCore.Routing;
+﻿using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Builder;
 using TestPluginWeb.Hubs;
+using WebInfrastructure;
 
 namespace TestPlugin
 {
-    public class TestPlugin : IPlugin
+    public class TestPlugin : IWebPlugin
     {
         public string Name { get; } = "Test";
 

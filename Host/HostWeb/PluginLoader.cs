@@ -1,5 +1,4 @@
-﻿using Infrastructure;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
+﻿using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.FileProviders;
 using System;
 using System.Collections.Generic;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
 using System.Threading.Tasks;
+using WebInfrastructure;
 
 namespace HostWeb
 {
@@ -15,7 +15,7 @@ namespace HostWeb
     {
         public string AssembleName { get; init; }
         public Assembly Assembly { get; init; }
-        public IPlugin Plugin { get; init; }
+        public IWebPlugin Plugin { get; init; }
         public List<ApplicationPart> Parts { get; init; }
     }
 
@@ -57,14 +57,14 @@ namespace HostWeb
             return plugins;
         }
 
-        private static IPlugin TryGetPlugin(Assembly assembly)
+        private static IWebPlugin TryGetPlugin(Assembly assembly)
         {
             Type[] types = assembly.GetTypes();
             foreach (var type in types)
             {   //Load only plugins
-                if (type.IsAssignableTo(typeof(IPlugin)))
+                if (type.IsAssignableTo(typeof(IWebPlugin)))
                 {
-                    return (IPlugin)Activator.CreateInstance(type);
+                    return (IWebPlugin)Activator.CreateInstance(type);
                 }
             }
             throw new Exception($"Unable to load plugin from assembly {assembly.FullName}");

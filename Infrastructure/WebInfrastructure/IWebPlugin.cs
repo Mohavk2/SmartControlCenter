@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Routing;
 using System;
 
-namespace Infrastructure
+namespace WebInfrastructure
 {
-    public interface IPlugin
+    public interface IWebPlugin
     {
         public string Name { get; }
 

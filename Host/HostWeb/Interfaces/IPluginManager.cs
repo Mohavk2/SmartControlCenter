@@ -1,15 +1,15 @@
-﻿using Infrastructure;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebInfrastructure;
 
 namespace HostWeb.Interfaces
 {
     public interface IPluginManager
     {
-        public void AddPlugin(IPlugin plugin);
+        public void AddPlugin(IWebPlugin plugin);
         public IEnumerable<string> GetPluginNames();
-        public IEnumerable<IPlugin> GetPlugins();
+        public IEnumerable<IWebPlugin> GetPlugins();
     }
 }

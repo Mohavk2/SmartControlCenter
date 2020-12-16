@@ -1,17 +1,17 @@
 ﻿using HostWeb.Interfaces;
-using Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebInfrastructure;
 
 namespace HostWeb.Services
 {
     public class PluginManager : IPluginManager
     {
-        private static Dictionary<string, IPlugin> plugins = new Dictionary<string, IPlugin>();
+        private static Dictionary<string, IWebPlugin> plugins = new Dictionary<string, IWebPlugin>();
 
-        public void AddPlugin(IPlugin plugin)
+        public void AddPlugin(IWebPlugin plugin)
         {
             plugins.Add(plugin.Name, plugin);
         }
@@ -21,7 +21,7 @@ namespace HostWeb.Services
             return plugins.Keys;
         }
 
-        public IEnumerable<IPlugin> GetPlugins()
+        public IEnumerable<IWebPlugin> GetPlugins()
         {
             return plugins.Values;
         }
