@@ -14,9 +14,6 @@ namespace TestPluginWpf
 {
     public class TestPlugin : IWpfPlugin
     {
-        public event SomethingWentWrongEventHandler SomethingWentWrong;
-        public event PluginLoadedEventHandler PluginLoaded;
-
         public string Name { get; } = "TestPlugin";
 
         Dispatcher dispatcher = Dispatcher.CurrentDispatcher;
