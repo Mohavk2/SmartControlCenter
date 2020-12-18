@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\WpfInfrastructure\WpfInfrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

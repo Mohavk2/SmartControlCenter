@@ -3,31 +3,44 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HostWpfClient"
+        xmlns:local="clr-namespace:HostWpfClient.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.DataContext>
+        <local:MainViewModel></local:MainViewModel>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
+            <RowDefinition MaxHeight="50"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Button x:Name="TestSignalRButton" Content="Test SignslR" 
-                Grid.Row="0" Grid.Column="0"
-                Height="60" Width="100" 
-                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3,30,0,0" Click="TestSignalRButton_Click"></Button>
-        <TextBox x:Name="TestInput"
-                 Grid.Row="0" Grid.Column="0"
-                 Height="60" Width="100"
-                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="123,30,0,0"/>
-        <TextBlock x:Name="TestOutput" Text="SignalR output"
-                   Grid.Column="1" Grid.Row="0"
-                   TextWrapping="Wrap"
-                   Margin="30"
-                   ></TextBlock>
+        <TabControl Grid.Row="1">
+            <TabItem Header="Center">
+                <StackPanel Orientation="Horizontal" Height="60">
+                    <Button x:Name="TestSignalRButton" Content="Test SignslR"                
+                        Width="100" 
+                        Click="TestSignalRButton_Click"></Button>
+                    <TextBox x:Name="TestInput"
+                        Width="100"/>
+                    <TextBlock x:Name="TestOutput" Text="SignalR output"
+                        TextWrapping="Wrap"></TextBlock>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Plugins">
+                <TabControl x:Name="PluginPanel" TabStripPlacement="Left"
+                  ItemsSource="{Binding PluginsWrappers}">
+                    <TabControl.ItemContainerStyle>
+                        <Style TargetType="TabItem">
+                            <Setter Property="Header" Value="{Binding Name}"></Setter>
+                            <Setter Property="Content" Value="{Binding View}"></Setter>
+                        </Style>
+                    </TabControl.ItemContainerStyle>
+                </TabControl>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

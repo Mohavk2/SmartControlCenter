@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR.Client;
+﻿using HostWpfClient.ViewModels;
+using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfInfrastructure;
 
 namespace HostWpfClient
 {
@@ -26,7 +28,7 @@ namespace HostWpfClient
             InitializeComponent();
         }
 
-        static HubConnection hubConnection;
+        HubConnection hubConnection;
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {

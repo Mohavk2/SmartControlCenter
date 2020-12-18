@@ -20,7 +20,8 @@ namespace HostWeb
     }
 
     public static class PluginLoader
-    {   //TODO: Add configuration
+    {   
+        //TODO: Add configuration
         public const string pluginDirectoryPath = @"C:\Users\Saint\source\repos\SmartControlCenter\Host\HostWeb\bin\Debug\net5.0\Plugins\net5.0";
 
         public static List<PluginLoadedPackage> LoadPlugins()
@@ -61,7 +62,8 @@ namespace HostWeb
         {
             Type[] types = assembly.GetTypes();
             foreach (var type in types)
-            {   //Load only plugins
+            {   
+                //Load only plugins
                 if (type.IsAssignableTo(typeof(IWebPlugin)))
                 {
                     return (IWebPlugin)Activator.CreateInstance(type);
