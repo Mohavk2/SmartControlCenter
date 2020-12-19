@@ -14,7 +14,7 @@ namespace TestPluginWpf
 {
     public class TestPlugin : IWpfPlugin
     {
-        public string Name { get; } = "TestPlugin";
+        public string GetName() => "TestPlugin";
 
         Dispatcher dispatcher = Dispatcher.CurrentDispatcher;
 

@@ -18,7 +18,7 @@ namespace HostWpfClient.ViewModels
 
         IWpfPlugin plugin { get; set; }
 
-        public string Name => plugin.Name;
+        public string Name => plugin.GetName();
 
         UserControl view;
         public UserControl View

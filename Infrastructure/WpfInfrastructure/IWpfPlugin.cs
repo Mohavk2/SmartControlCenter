@@ -7,8 +7,7 @@ namespace WpfInfrastructure
 
     public interface IWpfPlugin
     {
-        public string Name { get; }
-
+        public string GetName();
         /// <summary>
         /// This method will be called from a worker thread so don't put any UI thread related logic here or use Dispatcher!!!
         /// </summary>

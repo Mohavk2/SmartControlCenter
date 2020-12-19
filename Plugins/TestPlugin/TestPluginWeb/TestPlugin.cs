@@ -7,7 +7,7 @@ namespace TestPlugin
 {
     public class TestPlugin : IWebPlugin
     {
-        public string Name { get; } = "Test";
+        public string GetName() => "Test";
 
         public void UseEndpoints(IEndpointRouteBuilder endpoints)
         {

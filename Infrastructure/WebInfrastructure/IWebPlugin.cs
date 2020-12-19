@@ -5,7 +5,7 @@ namespace WebInfrastructure
 {
     public interface IWebPlugin
     {
-        public string Name { get; }
+        public string GetName();
 
         public void UseEndpoints(IEndpointRouteBuilder endpoints);
     }

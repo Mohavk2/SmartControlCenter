@@ -7,7 +7,7 @@ namespace YiiColorBulbWeb
 {
     public class YiiColorBulbPlugin : IWebPlugin
     {
-        public string Name { get; } = "YiiColorBulb";
+        public string GetName() => "YiiColorBulb";
 
         public void UseEndpoints(IEndpointRouteBuilder endpoints)
         {

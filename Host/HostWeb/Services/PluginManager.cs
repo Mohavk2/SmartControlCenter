@@ -13,7 +13,7 @@ namespace HostWeb.Services
 
         public void AddPlugin(IWebPlugin plugin)
         {
-            plugins.Add(plugin.Name, plugin);
+            plugins.Add(plugin.GetName(), plugin);
         }
 
         public IEnumerable<string> GetPluginNames()
