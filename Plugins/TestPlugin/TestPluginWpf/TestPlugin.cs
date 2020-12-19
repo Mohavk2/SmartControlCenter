@@ -40,9 +40,11 @@ namespace TestPluginWpf
             catch (Exception ex)
             {
                 //TODO: Add logging
+                throw new Exception($"Unable to connect to the WebHost. Looks like WebHost is not running or have a connection problem. ({ex.Message})");
             }
         }
 
+        //This method runs right after user resources initialization is completed.Make sure that it's ready to return view or throw an exception.
         public UserControl GetView()
         {
             var uc = new MainViewModel(hubConnection);

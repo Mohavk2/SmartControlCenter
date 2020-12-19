@@ -9,6 +9,7 @@
     <Window.DataContext>
         <local:MainViewModel></local:MainViewModel>
     </Window.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -32,7 +33,7 @@
             </TabItem>
             <TabItem Header="Plugins">
                 <TabControl x:Name="PluginPanel" TabStripPlacement="Left"
-                  ItemsSource="{Binding PluginsWrappers}">
+                            ItemsSource="{Binding PluginsWrappers}">
                     <TabControl.ItemContainerStyle>
                         <Style TargetType="TabItem">
                             <Setter Property="Header" Value="{Binding Name}"></Setter>
@@ -41,6 +42,38 @@
                     </TabControl.ItemContainerStyle>
                 </TabControl>
             </TabItem>
+            <TabControl.ItemContainerStyle>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Border x:Name="Border" 
+                                        Width="100" Height="30"
+                                        BorderThickness="1,1,1,0" 
+                                        BorderBrush="DarkCyan"
+                                        Background="Azure">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" ContentSource="Header">
+                                    </ContentPresenter>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="LightSkyBlue"></Setter>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Border>
+                                    <TextBlock Text="{Binding}" FontSize="18" FontWeight="DemiBold"></TextBlock>
+                                </Border>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.ItemContainerStyle>
         </TabControl>
     </Grid>
 </Window>

@@ -42,9 +42,21 @@ namespace HostWpfClient.ViewModels
 
         void LoadPluginView()
         {
-            plugin.InitializeAsync().Wait();
+            string errorMessage = null;
+            try
+            {
+                plugin.InitializeAsync().Wait();
+            }
+            catch(Exception ex)
+            {
+                errorMessage = ex.Message;
+                //TODO: Add logging
+            }
 
-            dispatcher.Invoke(() => View = plugin.GetView());
+            dispatcher.Invoke(() => 
+            {
+                View = (errorMessage == null) ? plugin.GetView() : new SomethingWentWrong(errorMessage);
+            });
         }
     }
 }

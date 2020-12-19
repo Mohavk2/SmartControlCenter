@@ -14,7 +14,10 @@ namespace WpfInfrastructure
         /// </summary>
         /// <returns></returns>
         public Task InitializeAsync();
-
+        /// <summary>
+        /// This method runs right after user resources initialization is completed. Make sure that it's ready to return view or throw an exception.
+        /// </summary>
+        /// <returns></returns>
         public UserControl GetView();
     }
 }

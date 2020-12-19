@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Something went wrong" FontSize="24"></TextBlock>
-            <TextBlock x:Name="ErrorMessage" FontSize="16"></TextBlock>
+            <TextBlock x:Name="ErrorMessage" FontSize="16" TextWrapping="Wrap"></TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>
