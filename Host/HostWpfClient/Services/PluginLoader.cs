@@ -7,7 +7,7 @@ using System.Runtime.Loader;
 using System.Threading.Tasks;
 using WpfInfrastructure;
 
-namespace HostWpfClient
+namespace HostWpfClient.Services
 {
     public static class PluginLoader
     {   

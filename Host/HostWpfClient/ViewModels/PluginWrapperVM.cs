@@ -27,7 +27,7 @@ namespace HostWpfClient.ViewModels
             set
             {
                 view = value;
-                OnPropertyChanged(nameof(View));
+                RaisePropertyChanged(nameof(View));
             }
         }
 

@@ -11,12 +11,10 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\css\style.css" />
-    <Content Remove="wwwroot\lib\signalr\signalr.min.js" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="wwwroot\css\style.css" />
-    <EmbeddedResource Include="wwwroot\lib\signalr\signalr.min.js" />
   </ItemGroup>
 
   <ItemGroup>

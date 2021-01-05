@@ -5,11 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HostWpfClient.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
-    <Window.DataContext>
-        <local:MainViewModel></local:MainViewModel>
-    </Window.DataContext>
-
+        Title="MainWindow" Height="450" Width="800">
+ 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -23,11 +20,10 @@
             <TabItem Header="Center">
                 <StackPanel Orientation="Horizontal" Height="60">
                     <Button x:Name="TestSignalRButton" Content="Test SignslR"                
-                        Width="100" 
-                        Click="TestSignalRButton_Click"></Button>
+                        Width="100"/>
                     <TextBox x:Name="TestInput"
                         Width="100"/>
-                    <TextBlock x:Name="TestOutput" Text="SignalR output"
+                    <TextBlock x:Name="TestOutput" Text="{Binding HostNotification}"
                         TextWrapping="Wrap"></TextBlock>
                 </StackPanel>
             </TabItem>

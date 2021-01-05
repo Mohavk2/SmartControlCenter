@@ -1,0 +1,60 @@
+﻿#HostLayoutHeader {
+    position: relative;
+    height: 60px;
+    width: auto;
+    line-height: 50px;
+    display: flex;
+    justify-content: center;
+    background-color: azure;
+    font-size: 40px;
+}
+
+#HostHomeWelcomePage {
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    display: flex;
+}
+
+#HostOptions {
+    width: 10%;
+}
+
+#MainHostContainer {
+    position: relative;
+    height: 100%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+#HostNavigationBar {
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    background-color: floralwhite;
+}
+.HostPluginNavButton {
+    width: auto;
+    margin: 0 10px;
+}
+.HostPluginNavButton a {
+    line-height: 30px;
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+}
+#HostPluginContainer {
+    position: absolute;
+    width: 100%;
+    height: 80vh;
+    background-color: ghostwhite;
+}
+
+#HostPluginContainer {
+    position: absolute;
+    width: 100%;
+    height: 80vh;
+    background-color: ghostwhite;
+}

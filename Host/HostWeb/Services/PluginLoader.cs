@@ -9,7 +9,7 @@ using System.Runtime.Loader;
 using System.Threading.Tasks;
 using WebInfrastructure;
 
-namespace HostWeb
+namespace HostWeb.Services
 {
     public struct PluginLoadedPackage
     {
@@ -23,6 +23,7 @@ namespace HostWeb
     {   
         //TODO: Add configuration
         public const string pluginDirectoryPath = @"C:\Users\Saint\source\repos\SmartControlCenter\Host\HostWeb\bin\Debug\net5.0\Plugins\net5.0";
+        static int idCount = 0;
 
         public static List<PluginLoadedPackage> LoadPlugins()
         {
@@ -66,7 +67,8 @@ namespace HostWeb
                 //Load only plugins
                 if (type.IsAssignableTo(typeof(IWebPlugin)))
                 {
-                    return (IWebPlugin)Activator.CreateInstance(type);
+                    var pluginId = idCount++;
+                    return (IWebPlugin)Activator.CreateInstance(type, pluginId);
                 }
             }
             throw new Exception($"Unable to load plugin from assembly {assembly.FullName}");

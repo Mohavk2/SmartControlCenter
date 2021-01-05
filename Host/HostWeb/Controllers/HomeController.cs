@@ -13,5 +13,10 @@ namespace HostWeb.Controllers
         {
             return View();
         }
+
+        public IActionResult Main()
+        {
+            return View();
+        }
     }
 }

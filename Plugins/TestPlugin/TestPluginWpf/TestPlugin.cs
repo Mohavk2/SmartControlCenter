@@ -40,7 +40,7 @@ namespace TestPluginWpf
             catch (Exception ex)
             {
                 //TODO: Add logging
-                throw new Exception($"Unable to connect to the WebHost. Looks like WebHost is not running or have a connection problem. ({ex.Message})");
+                throw new Exception($"Unable to connect to the WebHost. Looks like WebHost is not running or a connection problem appeared. ({ex.Message})");
             }
         }
 

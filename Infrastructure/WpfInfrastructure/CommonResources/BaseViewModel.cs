@@ -11,7 +11,7 @@ namespace WpfInfrastructure.CommonResources
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void OnPropertyChanged(string propertyName)
+        protected void RaisePropertyChanged(string propertyName)
         {
             var handler = this.PropertyChanged;
             handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));

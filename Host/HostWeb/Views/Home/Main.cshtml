@@ -1,0 +1,65 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_PluginView";
+}
+@using HostWeb.Interfaces
+@inject IPluginManager pluginManager
+
+<div class="TestBlock">
+    <h3>Hello from main page</h3>
+</div>
+
+<div class="TestBlock">
+    <select id="scriptSelector"></select>
+    <input type="button" id="runScript" value="Run Script" />
+    <input type="button" id="stopScript" value="Stop Script" />
+    <div id="scriptOutput"></div>
+</div>
+
+<script type="text/javascript">
+    var scriptSelector = document.getElementById("scriptSelector");
+    var runScriptBtn = document.getElementById("runScript");
+    var stopScriptBtn = document.getElementById("stopScript");
+    var scriptoutput = document.getElementById("scriptOutput");
+
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/Host")
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+
+    runScriptBtn.addEventListener("click", RunScript)
+
+    async function RunScript() {
+        connection.invoke("RunScript", scriptSelector.value);
+    };
+
+    stopScriptBtn.addEventListener("click", StopScript)
+
+    async function StopScript() {
+        connection.invoke("StopScript", scriptSelector.value);
+    };
+
+    connection.on("ReceiveAllScripts", (scripts) => {
+        for (var i = 0; i < scripts.length; i++) {
+            var opt = document.createElement('option');
+            opt.value = scripts[i].id;
+            opt.innerHTML = scripts[i].name;
+            scriptSelector.appendChild(opt);
+        }
+    });
+
+    connection.on("ScriptRun", (scriptName) => {
+        scriptoutput.innerHTML = "Script run " + scriptName;
+    });
+
+    connection.on("ScriptStoped", (scriptName) => {
+        scriptoutput.innerHTML = "Script stoped " + scriptName;
+    });
+
+    connection.start().then(() => {
+        scriptoutput.innerHTML += "connected";
+        connection.invoke("GetScripts");
+    });
+
+</script>
+ 

@@ -1,3 +1,5 @@
+using AutoMapper;
+using HostWeb.Habs;
 using HostWeb.Interfaces;
 using HostWeb.Services;
 using Microsoft.AspNetCore.Builder;
@@ -19,7 +21,7 @@ namespace HostWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IPluginManager, PluginManager>();
-
+            services.AddAutoMapper(typeof(Startup));
             pluginsPackages = PluginLoader.LoadPlugins();
 
             //To serve plugins routing and views
@@ -58,11 +60,15 @@ namespace HostWeb
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
-            {   //To give the ability to a user to customize endpoints for controllers and hubs
+            {   
+                //To give the ability to a user to customize endpoints for controllers and hubs
                 foreach(var plugin in pluginManager.GetPlugins())
                 {
                     plugin.UseEndpoints(endpoints);
                 }
+                //To synchronizes Web and Wpf user interfaces
+                endpoints.MapHub<HostHub>("/Host");
+
                 endpoints.MapDefaultControllerRoute();
             });
         }

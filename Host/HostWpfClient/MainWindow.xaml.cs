@@ -1,4 +1,5 @@
-﻿using HostWpfClient.ViewModels;
+﻿using HostWpfClient.Services;
+using HostWpfClient.ViewModels;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfInfrastructure;
+using WpfInfrastructure.CommonResources;
 
 namespace HostWpfClient
 {
@@ -23,53 +25,11 @@ namespace HostWpfClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(MainViewModel mainViewModel)
         {
             InitializeComponent();
-        }
 
-        HubConnection hubConnection;
-
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            hubConnection = new HubConnectionBuilder()
-                .WithUrl("https://localhost:44371/TestNotification")
-                .Build();
-
-            hubConnection.Closed += async (err) =>
-            {
-                TestInput.Text = "SignalR disconnected";
-                await Task.Delay(new Random().Next(0, 5) * 1000);
-                await hubConnection.StartAsync();
-                TestOutput.Text = "SignalR connected";
-            };
-
-            try
-            {
-                await hubConnection.StartAsync();
-                TestOutput.Text = "SignalR connected";
-            }
-            catch (Exception ex)
-            {
-                TestOutput.Text = ex.Message;
-            }
-
-            hubConnection.On<string>("Send", (message) =>
-            {
-                TestOutput.Text = message;
-            });
-        }
-
-        private async void TestSignalRButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await hubConnection.SendAsync("SendTest", TestInput.Text);
-            }
-            catch (Exception ex)
-            {
-                TestOutput.Text = ex.Message;
-            }
+            DataContext = mainViewModel;
         }
     }
 }
