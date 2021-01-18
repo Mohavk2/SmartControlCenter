@@ -18,10 +18,15 @@ main {
     display: flex;
 }
 
-#HostOptions {
+#HostOptionsBar {
     width: 10%;
 }
-
+#HostOptionsBar a{
+    line-height: 30px;
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+}
 #MainHostContainer {
     position: relative;
     height: 100%;
@@ -29,17 +34,17 @@ main {
     display: flex;
     justify-content: center;
 }
-#HostNavigationBar {
+#NavigationBar {
     width: 10%;
     display: flex;
     flex-direction: column;
     background-color: floralwhite;
 }
-.HostPluginNavButton {
+.PluginNavButton {
     width: auto;
     margin: 0 10px;
 }
-.HostPluginNavButton a {
+.PluginNavButton a {
     line-height: 30px;
     color: black;
     font-size: 20px;
@@ -51,7 +56,6 @@ main {
     height: 80vh;
     background-color: ghostwhite;
 }
-
 #HostPluginContainer {
     position: absolute;
     width: 100%;

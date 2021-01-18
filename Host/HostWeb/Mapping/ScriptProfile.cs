@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CommonInfrastructure.DTO;
-using HostWeb.Entities;
+using HostData.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +12,10 @@ namespace HostWeb.Mapping
     {
         public ScriptProfile()
         {
-            CreateMap<ScriptDTO, Script>()
+            CreateMap<ScriptDTO, PluginScript>()
                 .ForMember(dest => dest.Id, options => options.Ignore())
                 .ForMember(dest => dest.InnerId, opt => opt.MapFrom(src => src.Id));
-            CreateMap<Script, ScriptDTO>()
+            CreateMap<PluginScript, ScriptDTO>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.InnerId));
         }
     }

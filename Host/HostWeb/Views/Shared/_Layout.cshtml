@@ -1,6 +1,6 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using HostWeb.Interfaces
-@inject IPluginManager pluginManager
+@inject IPluginRepository pluginRepository
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -11,7 +11,7 @@
     <link type="text/css" rel="stylesheet" href="~/css/Style.css" />
     <script src="~/lib/signalr/signalr.min.js"></script>
     <script src="~/lib/jquery/jquery.min.js"></script>
-    @RenderSection("Styles", false)
+    @RenderSection("Links", false)
 
 </head>
 <body>
@@ -19,7 +19,7 @@
         <h1>Smart control center</h1>
     </header>
     <main>
-        <nav id="HostOptions">
+        <nav id="HostOptionsBar">
             <a asp-action="Main" asp-controller="Home">Main</a>
             <a href=""></a>
             <a href=""></a>
@@ -28,10 +28,10 @@
         <div id="MainHostContainer">
             @RenderBody()
         </div>
-        <nav id="HostNavigationBar">
-            @foreach (var pluginName in pluginManager.GetPluginNames())
+        <nav id="PluginNavigationBar">
+            @foreach (var pluginName in pluginRepository.GetPluginNames())
             {
-                <div class="HostPluginNavButton">
+                <div class="PluginNavButton">
                     <a asp-action="Index" asp-controller="@pluginName">@pluginName</a>
                 </div>
             }

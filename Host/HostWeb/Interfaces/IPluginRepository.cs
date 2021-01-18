@@ -1,4 +1,4 @@
-﻿using HostWeb.Entities;
+﻿using HostData.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +7,10 @@ using WebInfrastructure;
 
 namespace HostWeb.Interfaces
 {
-    public interface IPluginManager
+    public interface IPluginRepository
     {
-        public void AddPlugin(IWebPlugin plugin);
         public IEnumerable<string> GetPluginNames();
         public IEnumerable<IWebPlugin> GetPlugins();
-        public List<Script> GetAllScripts();
+        public List<PluginScript> GetAllScripts();
     }
 }

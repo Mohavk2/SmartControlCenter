@@ -1,5 +1,4 @@
-﻿using HostWeb.Entities;
-using HostWeb.Interfaces;
+﻿using HostWeb.Interfaces;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
@@ -10,9 +9,9 @@ namespace HostWeb.Habs
 {
     public class HostHub : Hub
     {
-        IPluginManager pluginManager;
+        IPluginRepository pluginManager;
 
-        public HostHub(IPluginManager pluginManager)
+        public HostHub(IPluginRepository pluginManager)
         {
             this.pluginManager = pluginManager;
         }

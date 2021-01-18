@@ -29,9 +29,10 @@ namespace HostWpfClient.Services
                     var plugin = TryGetPlugin(assembly);
                     plugins.Add(plugin);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //TODO: Add logging
+                    throw;
                 }
             }
             return plugins;

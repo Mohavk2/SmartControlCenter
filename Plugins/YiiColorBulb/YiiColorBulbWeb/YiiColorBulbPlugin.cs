@@ -5,16 +5,17 @@ using WebInfrastructure;
 using System.Collections.Generic;
 using CommonInfrastructure.DTO;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace YiiColorBulbWeb
 {
     public class YiiColorBulbPlugin : IWebPlugin
     {
-        public int Id { get; }
+        public int Id { get; set; }
 
-        public YiiColorBulbPlugin(int id)
+        public YiiColorBulbPlugin()
         {
-            this.Id = id;
+
         }
 
         public string GetName() => "YiiColorBulb";
@@ -36,6 +37,16 @@ namespace YiiColorBulbWeb
         public void UseEndpoints(IEndpointRouteBuilder endpoints)
         {
             endpoints.MapHub<YiiColorBulbNotificationHub>("/YiiColorBulbNotification");
+        }
+
+        public Task InitializeAsync()
+        {
+            return Task.CompletedTask;
+        }
+
+        public void ConfigureUserServices(IServiceCollection services)
+        {
+            
         }
     }
 }

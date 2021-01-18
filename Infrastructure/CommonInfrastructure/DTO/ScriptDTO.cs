@@ -8,5 +8,6 @@ namespace CommonInfrastructure.DTO
     {
         public int Id { get; init; }
         public string Name { get; init; }
+        public int Duration { get; set; }
     }
 }

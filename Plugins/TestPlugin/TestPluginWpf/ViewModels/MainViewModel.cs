@@ -9,7 +9,7 @@ using WpfInfrastructure.CommonResources;
 namespace TestPluginWpf.ViewModels
 {
     public class MainViewModel : BaseViewModel
-    {
+    { 
         HubConnection hubConnection;
 
         public MainViewModel(HubConnection hubConnection)

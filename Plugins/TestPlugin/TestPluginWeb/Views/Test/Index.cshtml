@@ -2,62 +2,46 @@
     Layout = "_PluginView";
 }
 
-@section Styles {
+@section Links {
     <link type="text/css" rel="stylesheet" href="~/TestPluginWeb/wwwroot/css/style.css" />
+    <script defer src="~/TestPluginWeb/wwwroot/js/IndexScript.js"></script>
 }
-
 <div id="MainContainer">
 
-    <div class="TestBlock">
-        <h3>Hello from Test Plugin</h3>
+    <div class="HeadSection">
+        <div class="TestBlock">
+            <h3>Hello from Test Plugin</h3>
+        </div>
+        <div class="TestBlock">
+            <input type="button" id="TestAjaxButton" value="Test Ajax" />
+            <div id="TestAjaxOutput"></div>
+        </div>
     </div>
+    <div class="TestSection">
+        <div id="CircleContainer">
+            <div id="Circle">
 
-    <div class="TestBlock">
-        <input type="button" id="TestAjaxButton" value="Test Ajax" />
-        <div id="TestAjaxOutput"></div>
+            </div>
+        </div>
     </div>
-    <div class="TestBlock">
-        <input type="button" id="TestSignalRButton" value="Test SignalR" />
-        <input type="text" id="TestSignalRInput" />
-        <div id="TestSignalROutput"></div>
+    <div class="TestControlSection">
+        <div class="TestBlock">
+            <input type="button" id="MoveCircle" value="Test Command" />
+            <input type="number" id="InputX" />
+            <input type="number" id="InputY" />
+            <div id="CircleCoordinates"></div>
+        </div>
+        <div class="TestBlock">
+            <input type="button" id="RunAction" value="Run Action" />
+            <select id="ActionSelector"></select>
+            <input type="checkbox" id="CircleMoveRecording" />
+            <div id="ActionOutput"></div>
+        </div>
+        <div class="TestBlock">
+            <input type="button" id="TestScript" value="Test Script" />
+            <input type="text" id="ScriptInput" />
+            <div id="ScriptOutput"></div>
+        </div>
     </div>
-
-    <script type="text/javascript">
-
-        var ajaxbtn = document.getElementById("TestAjaxButton");
-        var ajaxOutput = document.getElementById("TestAjaxOutput");
-
-        ajaxbtn.onclick = async function () {
-
-            const response = await fetch("/Test/api/TestAjax", {
-                method: "GET",
-                headers: { "Accept": "application/json" }
-            });
-
-            if (response.ok === true) {
-                ajaxOutput.innerHTML = await response.json();
-            }
-        }
-
-        var signalRbtn = document.getElementById("TestSignalRButton");
-        var signalRinput = document.getElementById("TestSignalRInput");
-        var signalRoutput = document.getElementById("TestSignalROutput");
-
-        const connection = new signalR.HubConnectionBuilder()
-            .withUrl("/TestNotification")
-            .configureLogging(signalR.LogLevel.Information)
-            .build();
-
-        connection.on("Send", message => {
-            signalRoutput.innerHTML = message;
-        });
-
-        connection.start()
-
-        signalRbtn.onclick = async function () {
-
-            connection.invoke("SendTest", signalRinput.value);
-        };
-
-    </script>
+    <script scr="~/TestPluginWeb/wwwroot/js/IndexScript.js"></script>
 </div>

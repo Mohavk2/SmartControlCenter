@@ -11,10 +11,12 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\css\style.css" />
+    <Content Remove="wwwroot\js\IndexScript.js" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="wwwroot\css\style.css" />
+    <EmbeddedResource Include="wwwroot\js\IndexScript.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,10 +24,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\WebInfrastructure\WebInfrastructure.csproj">
       <Private>false</Private>
       <ExcludeAssets>runtime</ExcludeAssets>
     </ProjectReference>
+    <ProjectReference Include="..\TestData\TestData.csproj" />
   </ItemGroup>
 
 </Project>

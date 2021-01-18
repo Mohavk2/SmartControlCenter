@@ -3,7 +3,7 @@
     Layout = "_PluginView";
 }
 @using HostWeb.Interfaces
-@inject IPluginManager pluginManager
+@inject IPluginRepository pluginRepository
 
 <div class="TestBlock">
     <h3>Hello from main page</h3>
@@ -43,7 +43,7 @@
         for (var i = 0; i < scripts.length; i++) {
             var opt = document.createElement('option');
             opt.value = scripts[i].id;
-            opt.innerHTML = scripts[i].name;
+            opt.innerHTML = scripts[i].pluginName + " " + scripts[i].name;
             scriptSelector.appendChild(opt);
         }
     });
