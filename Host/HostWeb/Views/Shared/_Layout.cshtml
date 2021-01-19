@@ -1,6 +1,6 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using HostWeb.Interfaces
-@inject IPluginRepository pluginRepository
+@inject IPluginManager pluginManager
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -29,7 +29,7 @@
             @RenderBody()
         </div>
         <nav id="PluginNavigationBar">
-            @foreach (var pluginName in pluginRepository.GetPluginNames())
+            @foreach (var pluginName in pluginManager.GetPluginNames())
             {
                 <div class="PluginNavButton">
                     <a asp-action="Index" asp-controller="@pluginName">@pluginName</a>

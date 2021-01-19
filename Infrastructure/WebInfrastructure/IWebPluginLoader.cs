@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace WebInfrastructure
     public interface IWebPluginLoader
     {
         public void ConfigureUserServices(IServiceCollection services);
+        public void UseEndpoints(IEndpointRouteBuilder endpoints);
     }
 }

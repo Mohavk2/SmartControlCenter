@@ -10,13 +10,13 @@ using WebInfrastructure;
 
 namespace HostWeb.Services
 {
-    public class PluginRepository : IPluginRepository
+    public class PluginManager : IPluginManager
     {
         private static Dictionary<string, IWebPlugin> plugins = new Dictionary<string, IWebPlugin>();
 
         IMapper mapper;
 
-        public PluginRepository(IMapper mapper, PluginResourcesProvider pluginResources, IServiceProvider services)
+        public PluginManager(IMapper mapper, PluginResourcesProvider pluginResources, IServiceProvider services)
         {
             this.mapper = mapper;
             foreach (var type in pluginResources.WebPluginTypes)

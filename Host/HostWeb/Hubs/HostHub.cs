@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HostWeb.Habs
+namespace HostWeb.Hubs
 {
     public class HostHub : Hub
     {
-        IPluginRepository pluginManager;
+        IPluginManager pluginManager;
 
-        public HostHub(IPluginRepository pluginManager)
+        public HostHub(IPluginManager pluginManager)
         {
             this.pluginManager = pluginManager;
         }

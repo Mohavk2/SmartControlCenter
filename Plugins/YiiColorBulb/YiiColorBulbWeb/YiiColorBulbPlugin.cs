@@ -34,11 +34,6 @@ namespace YiiColorBulbWeb
             return Task.CompletedTask;
         }
 
-        public void UseEndpoints(IEndpointRouteBuilder endpoints)
-        {
-            endpoints.MapHub<YiiColorBulbNotificationHub>("/YiiColorBulbNotification");
-        }
-
         public Task InitializeAsync()
         {
             return Task.CompletedTask;

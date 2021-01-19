@@ -12,7 +12,6 @@ namespace WebInfrastructure
     {
         public int Id { get; set; }
         public string GetName();
-        public void UseEndpoints(IEndpointRouteBuilder endpoints);
         public Task InitializeAsync();
         public IEnumerable<ScriptDTO> GetScripts();
         public Task RunScriptAsync(ScriptDTO script);

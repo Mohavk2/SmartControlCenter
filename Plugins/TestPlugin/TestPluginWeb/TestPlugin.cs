@@ -30,14 +30,6 @@ namespace TestPlugin
             this.actionExecutor = actionExecutor;
         }
 
-        public void UseEndpoints(IEndpointRouteBuilder endpoints)
-        {
-            //TODO: Rename hubs
-            endpoints.MapHub<TestScriptHub>("/TestScript");
-            endpoints.MapHub<TestCommandHub>("/TestCommand");
-            endpoints.MapHub<TestActionHub>("/TestAction");
-        }
-
         public async Task InitializeAsync()
         {
             await remoteScriptController.ConnectToHubAsync();

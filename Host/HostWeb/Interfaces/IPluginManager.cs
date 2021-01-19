@@ -7,7 +7,7 @@ using WebInfrastructure;
 
 namespace HostWeb.Interfaces
 {
-    public interface IPluginRepository
+    public interface IPluginManager
     {
         public IEnumerable<string> GetPluginNames();
         public IEnumerable<IWebPlugin> GetPlugins();

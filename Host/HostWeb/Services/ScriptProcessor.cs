@@ -13,12 +13,12 @@ namespace HostWeb.Services
     {
         public bool isScriptRunning { get; set; } = false;
 
-        IPluginRepository pluginRepository;
+        IPluginManager pluginManager;
         IMapper mapper;
 
-        public ScriptProcessor(IPluginRepository pluginRepository, IMapper mapper)
+        public ScriptProcessor(IPluginManager pluginManager, IMapper mapper)
         {
-            this.pluginRepository = pluginRepository;
+            this.pluginManager = pluginManager;
             this.mapper = mapper;
         }
 
@@ -26,7 +26,7 @@ namespace HostWeb.Services
         {
             List<Task> scriptsTasks = new List<Task>();
 
-            foreach (var plugin in pluginRepository.GetPlugins())
+            foreach (var plugin in pluginManager.GetPlugins())
             {
                 var pluginName = plugin.GetName();
                 if (hostScript.PluginsScripts.ContainsKey(pluginName))
