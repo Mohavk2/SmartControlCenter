@@ -20,21 +20,10 @@ namespace TestPlugin
         public string GetName() => "Test";
 
         RemoteScriptController remoteScriptController;
-        ScriptExecutor commandExecutor;
-        ActionExecutor actionExecutor;
 
-        public TestPlugin(RemoteScriptController remoteScriptController, ScriptExecutor commandExecutor, ActionExecutor actionExecutor)
+        public TestPlugin(RemoteScriptController remoteScriptController)
         {
-            this.commandExecutor = commandExecutor;
             this.remoteScriptController = remoteScriptController;
-            this.actionExecutor = actionExecutor;
-        }
-
-        public async Task InitializeAsync()
-        {
-            await remoteScriptController.ConnectToHubAsync();
-            await commandExecutor.ConnectToHubAsync();
-            await actionExecutor.ConnectToHubAsync();
         }
 
         public IEnumerable<ScriptDTO> GetScripts()

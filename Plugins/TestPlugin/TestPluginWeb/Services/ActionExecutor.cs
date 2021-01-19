@@ -19,7 +19,7 @@ namespace TestPluginWeb.Services
             foreach(var command in action.Commands)
             {
                 await Task.Delay(command.Delay);
-                await hubConnection.SendAsync(command.Method, command.Parameters);
+                await SendAsync(command.Method, command.Parameters);
             }
         }
     }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TestPluginWeb.Services
@@ -10,25 +11,24 @@ namespace TestPluginWeb.Services
     public class HubConnectionService
     {
         protected HubConnection hubConnection;
-        string url { get; set; }
 
         public HubConnectionService(string url)
         {
-            this.url = url;
+            hubConnection = new HubConnectionBuilder().WithUrl(url).Build();
+            hubConnection.Closed += Reconnect;
         }
 
-        public async Task ConnectToHubAsync()
+        protected async Task SendAsync(string method, object arg, CancellationToken cancellationToken = default)
         {
-            hubConnection = new HubConnectionBuilder()
-                .WithUrl(url)
-                .Build();
-
-            hubConnection.Closed += async (err) =>
+            if(hubConnection.State == HubConnectionState.Disconnected)
             {
-                await Task.Delay(new Random().Next(0, 5) * 1000);
-                await hubConnection.StartAsync();
-            };
+                await ConnectToHubAsync();
+            }
+            await hubConnection.SendAsync(method, arg, cancellationToken);
+        }
 
+        async Task ConnectToHubAsync()
+        {
             try
             {
                 await hubConnection.StartAsync();
@@ -40,6 +40,11 @@ namespace TestPluginWeb.Services
                     $"Unable to connect to the WebHost. Looks like WebHost is not running or a connection problem appeared. ({ex.Message})",
                     ex);
             }
+        }
+        async Task Reconnect(Exception ex)
+        {
+            await Task.Delay(new Random().Next(0, 5) * 1000);
+            await hubConnection.StartAsync();
         }
     }
 }

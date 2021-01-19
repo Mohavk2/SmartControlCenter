@@ -29,7 +29,7 @@ namespace TestPluginWeb.Services
         public async Task RunScriptAsync(ScriptDTO scriptDTO)
         {
             var script = scriptRepository.Get(scriptDTO.Id);
-            await hubConnection.SendAsync("Run", script);
+            await SendAsync("Run", script);
         }
     }
 }

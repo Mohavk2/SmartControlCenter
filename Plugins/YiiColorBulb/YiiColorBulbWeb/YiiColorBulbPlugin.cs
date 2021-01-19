@@ -13,10 +13,7 @@ namespace YiiColorBulbWeb
     {
         public int Id { get; set; }
 
-        public YiiColorBulbPlugin()
-        {
-
-        }
+        public YiiColorBulbPlugin() { }
 
         public string GetName() => "YiiColorBulb";
 
@@ -32,16 +29,6 @@ namespace YiiColorBulbWeb
         public Task RunScriptAsync(ScriptDTO script)
         {
             return Task.CompletedTask;
-        }
-
-        public Task InitializeAsync()
-        {
-            return Task.CompletedTask;
-        }
-
-        public void ConfigureUserServices(IServiceCollection services)
-        {
-            
         }
     }
 }

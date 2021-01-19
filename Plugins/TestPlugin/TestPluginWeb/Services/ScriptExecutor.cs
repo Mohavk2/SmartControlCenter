@@ -18,7 +18,7 @@ namespace TestPluginWeb.Services
             foreach(var action in script.Actions)
             {
                 await Task.Delay(action.Delay);
-                await hubConnection.SendAsync("Run", action);
+                await SendAsync("Run", action);
             }
         }
     }

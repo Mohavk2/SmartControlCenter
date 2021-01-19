@@ -64,7 +64,7 @@ namespace HostWeb
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IPluginManager pluginManager)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -86,15 +86,10 @@ namespace HostWeb
 
             app.UseRouting();
 
-            foreach(var plugin in pluginManager.GetPlugins())
-            {
-                plugin.InitializeAsync();
-            }
-
             app.UseEndpoints(endpoints =>
             {
                 //To give the ability to a user to customize endpoints for controllers and hubs
-                foreach (var pluginLoader in pluginResourcesProvider.PluginLoaders)               {
+                foreach (var pluginLoader in pluginResourcesProvider.PluginLoaders){
                     pluginLoader.UseEndpoints(endpoints);
                 }
                 //To synchronizes Web and Wpf user interfaces
