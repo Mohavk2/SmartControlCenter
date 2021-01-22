@@ -16,8 +16,6 @@ namespace TestPluginWpf
     {
         public string GetName() => "TestPlugin";
 
-        Dispatcher dispatcher = Dispatcher.CurrentDispatcher;
-
         HubConnection hubConnection;
 
         //This method will be called from a worker thread so don't put any UI thread related logic in here or use Dispatcher!!!
