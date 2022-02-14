@@ -17,11 +17,11 @@ namespace TestPluginWeb.Hubs
 
         public Task MoveCircle(string[] parameters)
         {
-            int x, y;
+            double x, y;
             try
             {
-                x = int.Parse(parameters[0]);
-                y = int.Parse(parameters[1]);
+                x = (int)double.Parse(parameters[0]);
+                y = (int)double.Parse(parameters[1]);
             }
             catch (Exception ex)
             {

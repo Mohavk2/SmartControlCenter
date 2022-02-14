@@ -6,43 +6,99 @@
     <link type="text/css" rel="stylesheet" href="~/TestPluginWeb/wwwroot/css/style.css" />
     <script defer src="~/TestPluginWeb/wwwroot/js/IndexScript.js"></script>
 }
-<div id="MainContainer">
+<div class="main-container" id="mainContainer">
 
-    <div class="HeadSection">
-        <div class="TestBlock">
+    <div class="head-section">
+        <div class="head-section__text page-element">
             <h3>Hello from Test Plugin</h3>
         </div>
-        <div class="TestBlock">
-            <input type="button" id="TestAjaxButton" value="Test Ajax" />
-            <div id="TestAjaxOutput"></div>
+        <div class="ajax-block page-element">
+            <button class="ajax-block__button" id="testAjaxButton">Test Ajax</button>
+            <div class="ajax-block__output" id="testAjaxOutput"></div>
         </div>
     </div>
-    <div class="TestSection">
-        <div id="CircleContainer">
-            <div id="Circle">
+    <div class="test-section">
+        <div class="test-section__circle-container page-element" id="circleContainer">
+            <div class="test-section__circle" id="circle"></div>
+        </div>
+    </div>
+    <div class="control-section">
 
+        <div class="command-control-panel page-element">
+            <div class="command-control-panel__row-1">
+                <div class="command-control-panel__item">
+                    <span>x: </span>
+                    <input class="command-control-panel__input" type="number" id="inputX" value="0" />
+                </div>
+                <div class="command-control-panel__item">
+                    <span>y: </span>
+                    <input class="command-control-panel__input" type="number" id="inputY" value="0" />
+                </div>
+            </div>
+            <div class="command-control-panel__row-2">
+                <button class="command-control-panel__move-button" id="moveCircle">Move</button>
+            </div>
+            <div class="command-control-panel__row-3">
+                <div class="command-control-panel__item" id="circleCoordinates">X: 0 Y: 0</div>
             </div>
         </div>
+
+        <div class="action-control-panel page-element">
+
+            <div class="action-control-panel__col-1">
+                <select class="action-control-panel__action-selector action-selector" id="actionPanelActionSelector"></select>
+                <div class="action-control-panel__action-name" id="actionName">Select action</div>
+            </div>
+
+            <div class="action-control-panel__col-2">
+                <button class="action-control-panel__button" id="runAction">Run</button>
+                <button class="action-control-panel__button" id="stopAction">Stop</button>
+                <div class="action-control-panel__recording">
+                    <span>Move Recording</span>
+                    <input type="checkbox" id="recordCircleMoving" />
+                </div>
+            </div>
+        </div>
+
+        <div class="script-control-panel page-element">
+            <div class="script-control-panel__row-1">
+                <div class="script-control-panel__script-options">
+                    <select class="script-control-panel__script-selector" id="scriptSelector"></select>
+                    <button class="script-control-panel__button" id="createScript">Save</button>
+                    <button id="stopScript">Stop</button>
+                    <button id="runScript">Run</button>
+                </div>
+            </div>
+            <div class="script-control-panel__row-2">
+                <div class="script-control-panel__action-list" id="actionList">
+                    <div class="action-list-item">
+                        <span class="action-list-item__name">Action1</span>
+                        <div class="action-list-item__options">
+                            <div class="action-list-item__col-1">
+                                <div>Delay:</div>
+                                <div>Repeat:</div>
+                            </div>
+                            <div class="action-list-item__col-2">
+                                <input type="number" id="delay" value="0" />
+                                <input type="number" id="repeat" value="1" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="script-control-panel__action-options">
+                    <button class="script-control-panel__button" id="addAction">Add action</button>
+                    <div class="select-dialogue--visible page-element" class="page-element">
+                        <select class="select-dialogue__action-selector action-selector"
+                                id="scriptBuilderActionSelector"></select>
+                        <div>
+                            <button>Cancel</button>
+                            <button>Ok</button>
+                        </div>
+                    </div>
+                    <button class="script-control-panel__button" id="deleteAction">Delete action</button>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <div class="TestControlSection">
-        <div class="TestBlock">
-            <input type="button" id="MoveCircle" value="Test Command" />
-            <input type="number" id="InputX" />
-            <input type="number" id="InputY" />
-            <div id="CircleCoordinates"></div>
-        </div>
-        <div class="TestBlock">
-            <input type="button" id="RunAction" value="Run Action" />
-            <select id="ActionSelector1" class="ActionSelector"></select>
-            <input type="checkbox" id="CircleMoveRecording" />
-            <div id="ActionOutput"></div>
-        </div>
-        <div class="TestBlock">
-            <select id="ActionSelector2" class="ActionSelector"></select>
-            <input type="button" id="TestScript" value="Test Script" />
-            <input type="text" id="ScriptInput" />
-            <div id="ScriptOutput"></div>
-        </div>
-    </div>
-    <script scr="~/TestPluginWeb/wwwroot/js/IndexScript.js"></script>
 </div>

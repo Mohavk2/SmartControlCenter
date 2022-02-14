@@ -23,7 +23,6 @@ namespace HostWeb.Services
 
         public void LoadPluginsWithViews()
         {
-            List<(Assembly, Assembly)> pluginValuePairs = new List<(Assembly, Assembly)>();
             string[] libraryPaths = Directory.GetFiles(pluginDirectoryPath, "*.dll");
 
             var assemblies = GetAssemblies(libraryPaths);
@@ -69,7 +68,7 @@ namespace HostWeb.Services
             }
         }
 
-        List<Assembly> GetAssemblies(string[] paths)
+        static List<Assembly> GetAssemblies(string[] paths)
         {
             List<Assembly> assemblies = new List<Assembly>();
             foreach (var path in paths)
@@ -79,7 +78,7 @@ namespace HostWeb.Services
             return assemblies;
         }
 
-        private Type[] GetTypes(Assembly assembly)
+        private static Type[] GetTypes(Assembly assembly)
         {
             try
             {

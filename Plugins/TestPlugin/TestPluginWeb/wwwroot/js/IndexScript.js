@@ -2,7 +2,7 @@
 
     /////*Ajax*/////
 
-    $('#TestAjaxButton').click(async function () {
+    $('#testAjaxButton').click(async function () {
 
         const response = await fetch("/Test/api/TestAjax", {
             method: "GET",
@@ -10,7 +10,7 @@
         });
 
         if (response.ok === true) {
-            $('#TestAjaxOutput').html(await response.json());
+            $('#testAjaxOutput').html(await response.json());
         }
     });
 
@@ -22,10 +22,10 @@
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
-    commandConnection.on("MoveCircle", (x, y) => {
-        $('#Circle').css('left', x + "px");
-        $('#Circle').css('top', y + "px");
-        $('#CircleCoordinates').html(x + "px : " + y + "px");
+    commandConnection.on("moveCircle", (x, y) => {
+        $('#circle').css('left', x + "px");
+        $('#circle').css('top', y + "px");
+        $('#circleCoordinates').html(x + "px : " + y + "px");
     });
 
     commandConnection.start();
@@ -37,21 +37,21 @@
         .build();
     
     actionConnection.on("Add", action => {
-        if ($('#CircleMoveRecording').prop('checked')) {
+        if ($('#recordCircleMoving').prop('checked')) {
 
-            let selectors = $('.ActionSelector');
+            let selectors = $('.action-selector');
             for (var i = 0; i < selectors.length; i++) {
                 let opt = document.createElement('option');
                 opt.value = action.id;
                 opt.innerHTML = action.name;
                 selectors[i].append(opt);
             }
-            $('#CircleMoveRecording').prop('checked', false);
+            $('#recordCircleMoving').prop('checked', false);
         }
     });
 
     actionConnection.on("Run", action => {
-        $('#ActionOutput').html(action.name + " is runing");
+        $('#actionName').html(action.name + " is runing");
     });
 
     actionConnection.start();
@@ -62,7 +62,7 @@
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
-    scriptConnection.on("Script1Running", message => {
+    scriptConnection.on("ScriptRunning", message => {
         $('#ScriptOutput').html(message);
     });
 
@@ -75,16 +75,16 @@
     var mousedown = false;
     var commandBuffer = new Array();
 
-    $('#Circle').mousedown(function (e) {
+    $('#circle').mousedown(function (e) {
         mousedown = true;
-        let offset = $('#Circle').offset();
+        let offset = $('#circle').offset();
         mouseDifferenceX = e.clientX - offset.left;
         mouseDifferenceY = e.clientY - offset.top;
     });
 
-    $('#Circle').mouseup(function (e) {
+    $('#circle').mouseup(function (e) {
         mousedown = false;
-        if ($('#CircleMoveRecording').prop('checked')) {
+        if ($('#recordCircleMoving').prop('checked')) {
             actionConnection.invoke("Add", {
                 "Id": parseInt(0),
                 "Name": prompt("type action name"),
@@ -96,14 +96,14 @@
         }
     });
 
-    $('#CircleContainer').mousemove(function (e) {
+    $('#circleContainer').mousemove(function (e) {
         if (mousedown) {
-            let x = (e.clientX - mouseDifferenceX - $('#CircleContainer').offset().left).toString();
-            let y = (e.clientY - mouseDifferenceY - $('#CircleContainer').offset().top).toString();
-            $('#Circle').css('left', x + 'px');
-            $('#Circle').css('top', y + 'px');
-            $('#CircleCoordinates').html(x + " : " + y);
-            if ($('#CircleMoveRecording').prop('checked')) {
+            let x = (e.clientX - mouseDifferenceX - $('#circleContainer').offset().left).toString();
+            let y = (e.clientY - mouseDifferenceY - $('#circleContainer').offset().top).toString();
+            $('#circle').css('left', x + 'px');
+            $('#circle').css('top', y + 'px');
+            $('#circleCoordinates').html(x + " : " + y);
+            if ($('#recordCircleMoving').prop('checked')) {
                 commandBuffer.push({
                     Delay: parseInt(17),
                     Method: "MoveCircle",
@@ -115,20 +115,45 @@
 
     /////*Command panel*/////
 
-    $('#MoveCircle').click(function () {
-        commandConnection.invoke("MoveCircle", [$('#InputX').val(), $('#InputY').val()]);
+    $('#moveCircle').click(function () {
+        commandConnection.invoke("moveCircle", [$('#inputX').val(), $('#inputY').val()]);
     });
 
     /////*Action panel*/////
 
-    $('#RunAction').click(function (e) {
-        actionConnection.invoke("Run", parseInt($('#ActionSelector1').val()));
+    $('#runAction').click(function (e) {
+        actionConnection.invoke("Run", parseInt($('#actionPanelActionSelector').val()));
     });
 
     /////*Script panel*/////
 
-    $('#TestScript').click(function () {
-        scriptConnection.invoke("RunScript1", $('#ScriptInput').val());
+    var itemId = 0;
+
+    $('#addAction').click(function (e) {
+
+        let scriptId = $('#scriptBuilderActionSelector').val();
+        let scriptName = $('#scriptBuilderActionSelector option:selected').text();
+
+        $('#actionList').append(
+            '<div class="action-list-item">'
+            + `<span class="action-list-item__item-id">${itemId++}</span>`
+            + `<span class="action-list-item__script-id">${scriptId}</span>`
+            + `<span class="action-list-item__name"> ${scriptName} </span>`
+            + '<div class="action-list-item__options">'
+            + '<div class="action-list-item__col-1">'
+            + '<div>delay</div>'
+            + '<div>repeat</div>'
+            + '</div>'
+            + '<div class="action-list-item__col-2">'
+            + '<input type="number" id="delay" value="0"/>'
+            + '<input type="number" id="repeat" value="1"/>'
+            + '</div>'
+            + '</div>'
+            + '</div>');
+    });
+
+    $('#runScript').click(function () {
+        scriptConnection.invoke("Run", $('#ScriptInput').val());
     });
 });
 
