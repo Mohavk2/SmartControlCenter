@@ -14,7 +14,7 @@ namespace HostWeb.Services
     public class PluginResourcesProvider
     {
         //TODO: Add configuration
-        public const string pluginDirectoryPath = @"C:\Users\Saint\source\repos\SmartControlCenter\Host\HostWeb\bin\Debug\net5.0\Plugins\net5.0";
+        public string pluginDirectoryPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins", "net5.0");
 
         public List<Assembly> Assemblies { get; set; } = new List<Assembly>();
         public List<IWebPluginLoader> PluginLoaders { get; set; } = new List<IWebPluginLoader>();

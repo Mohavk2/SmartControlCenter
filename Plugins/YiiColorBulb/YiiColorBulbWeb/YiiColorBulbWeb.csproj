@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>C:\Users\Saint\source\repos\SmartControlCenter\Host\HostWeb\bin\Debug\net5.0\Plugins\</OutputPath>
+    <OutputPath>$(SolutionDir)\Host\HostWeb\bin\Debug\net5.0\Plugins\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
